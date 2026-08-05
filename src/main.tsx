@@ -8,7 +8,9 @@ import './styles/globals.css'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <AppProviders>
-      <BrowserRouter><App /></BrowserRouter>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </AppProviders>
   </StrictMode>,
 )
