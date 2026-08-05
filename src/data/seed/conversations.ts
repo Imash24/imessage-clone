@@ -1,0 +1,13 @@
+import { seedInbox } from './inbox'
+import { seedMessagesByConversationId } from './messages'
+import type { Conversation } from '@/features/conversations/types'
+
+export const seedConversations: Conversation[] = seedInbox.map((item) => ({
+  id: `conversation-${item.id}`,
+  participantIds: [`contact-${item.id}`],
+  channel: 'SMS',
+  unreadCount: item.unreadCount,
+  createdAt: seedMessagesByConversationId[item.id][0]?.sentAt,
+  updatedAt: item.updatedAt,
+  messages: seedMessagesByConversationId[item.id],
+}))
