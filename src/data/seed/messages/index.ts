@@ -1,9 +1,8 @@
 import { additionalThreadMessages } from './additionalThreads'
 import { adKotakbMessages } from './ad-kotakb'
 import { bhAdhaarMessages } from './bh-adhaar'
-
 import { jdKotakbMessages } from './jd-kotakb'
-import { jgJioPayMessages } from './jg-jiopay'
+import { jgJiopayMessages } from './jg-jiopay'
 import { jk620014Messages } from './jk-620014'
 import { jkInpostMessages } from './jk-inpost'
 import { jkSlcbnkMessages } from './jk-slcbnk'
@@ -20,6 +19,6 @@ export const seedMessagesByConversationId: Record<string, Message[]> = {
   'bh-adhaar-g': bhAdhaarMessages,
   'jk-620014-p': jk620014Messages,
   'jm-620014-p': jm620014Messages,
-  'jg-jiopay-s': jgJioPayMessages,
+  'jg-jiopay-s': jgJiopayMessages,
   ...additionalThreadMessages,
 }

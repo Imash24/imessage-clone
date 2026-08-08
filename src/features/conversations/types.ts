@@ -5,6 +5,7 @@ export interface Conversation {
   participantIds: string[]
   createdAt?: string
   updatedAt?: string
+  sortOrder?: number
   unreadCount?: number
   channel: 'SMS'
   messages: Message[]

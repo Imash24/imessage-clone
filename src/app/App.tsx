@@ -8,6 +8,7 @@ import { useContactStore } from '@/features/contacts/store/contact-store'
 import { MessagesListScreen } from '@/features/conversations/components/MessagesListScreen'
 import { ConversationScreen } from '@/features/conversations/components/ConversationScreen'
 import { useConversationStore } from '@/features/conversations/store/conversation-store'
+import { applyManualOrder, orderConversations } from '@/features/conversations/utils/manualOrder'
 import { DeveloperMode } from '@/features/developer-mode/components/DeveloperMode'
 import type { Contact } from '@/features/contacts/types'
 import type { Conversation } from '@/features/conversations/types'
@@ -88,7 +89,7 @@ export function App() {
   const saveConversations = useConversationStore((state) => state.saveAll)
   const resetConversations = useConversationStore((state) => state.reset)
   const resolvedContacts = contacts.length ? contacts : seedContacts
-  const resolvedConversations = conversations.length ? conversations : seedConversations
+  const resolvedConversations = orderConversations(conversations.length ? conversations : seedConversations)
 
   useEffect(() => { void loadContacts(); void loadConversations() }, [loadContacts, loadConversations])
   useEffect(() => {
@@ -102,7 +103,7 @@ export function App() {
   }, [])
 
   const saveAll = async (nextContacts: Contact[], nextConversations: Conversation[]) => {
-    await Promise.all([saveContacts(nextContacts), saveConversations(nextConversations)])
+    await Promise.all([saveContacts(nextContacts), saveConversations(applyManualOrder(nextConversations))])
   }
   const saveContent = async (contact: Contact, conversation: Conversation) => {
     await saveAll(resolvedContacts.map((item) => item.id === contact.id ? contact : item), resolvedConversations.map((item) => item.id === conversation.id ? conversation : item))
