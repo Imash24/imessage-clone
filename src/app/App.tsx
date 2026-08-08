@@ -57,7 +57,7 @@ function ScreenWithDeveloperMode({ contact, conversation, props }: { contact: Co
   return (
     <div className={`simulator-layout ${props.isDeveloperModeOpen ? 'simulator-layout--editing' : ''}`}>
       <ConversationScreen contact={contact} conversation={conversation} />
-      {props.isDeveloperModeOpen && <DeveloperMode contact={contact} conversation={conversation} conversations={props.conversations} onClose={props.onCloseDeveloperMode} onSave={props.onSaveContent} onCreate={createConversation} onDelete={deleteConversation} onDuplicate={duplicateConversation} onMove={moveConversation} onReset={() => { void props.onReset(); navigate(appRoutes.home) }} onSelect={(conversationId) => navigate(appRoutes.conversation(conversationId))} />}
+      {props.isDeveloperModeOpen && <DeveloperMode contact={contact} conversation={conversation} conversations={props.conversations} contacts={props.contacts} onClose={props.onCloseDeveloperMode} onSave={props.onSaveContent} onCreate={createConversation} onDelete={deleteConversation} onDuplicate={duplicateConversation} onMove={moveConversation} onReset={() => { void props.onReset(); navigate(appRoutes.home) }} onSelect={(conversationId) => navigate(appRoutes.conversation(conversationId))} />}
     </div>
   )
 }

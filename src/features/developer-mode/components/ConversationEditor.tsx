@@ -54,6 +54,11 @@ export function ConversationEditor({ contact, conversation, onSave, embedded = f
     setSaved(false)
   }
 
+  const sortMessagesChronologically = () => {
+    setDraftMessages((messages) => [...messages].sort((first, second) => first.sentAt.localeCompare(second.sentAt)))
+    setSaved(false)
+  }
+
   const save = async () => {
     setIsSaving(true)
     await onSave(draftContact, { ...conversation, messages: draftMessages, updatedAt: new Date().toISOString() })
@@ -78,9 +83,11 @@ export function ConversationEditor({ contact, conversation, onSave, embedded = f
       <section className="editor-section">
         <div className="editor-section__title">
           <h3>Messages</h3>
-          <button className="editor-button editor-button--secondary" type="button" onClick={() => { setDraftMessages((messages) => [...messages, makeMessage()]); setSaved(false) }}>
-            <Plus aria-hidden="true" /> Create
-          </button>
+          <div className="editor-section__actions">
+            <button className="editor-button editor-button--secondary" type="button" onClick={sortMessagesChronologically}>Sort by time</button>
+            <button className="editor-button editor-button--secondary" type="button" onClick={() => { setDraftMessages((messages) => [...messages, makeMessage()]); setSaved(false) }}><Plus aria-hidden="true" /> Add</button>
+            <button className="editor-button editor-button--danger" type="button" onClick={() => { setDraftMessages([]); setSaved(false) }}><Trash2 aria-hidden="true" /> Clear</button>
+          </div>
         </div>
         <div className="editor-messages">
           {draftMessages.map((message, index) => (
@@ -99,8 +106,31 @@ export function ConversationEditor({ contact, conversation, onSave, embedded = f
                 <textarea rows={4} value={message.body} placeholder="Paste text or a URL" onChange={(event) => updateMessage(message.id, { body: event.target.value })} />
               </label>
               <label className="editor-field">
+                <span>Direction</span>
+                <select value={message.direction} onChange={(event) => updateMessage(message.id, { direction: event.target.value as Message['direction'] })}>
+                  <option value="incoming">Incoming</option>
+                  <option value="outgoing">Outgoing</option>
+                </select>
+              </label>
+              <label className="editor-field">
+                <span>Channel</span>
+                <select value={message.channel ?? 'SMS'} onChange={(event) => updateMessage(message.id, { channel: event.target.value as 'SMS' })}>
+                  <option value="SMS">SMS</option>
+                </select>
+              </label>
+              <label className="editor-field">
                 <span>Timestamp</span>
                 <input type="datetime-local" value={toDateTimeLocal(message.sentAt)} onChange={(event) => updateMessage(message.id, { sentAt: new Date(event.target.value).toISOString() })} />
+              </label>
+              <label className="editor-field">
+                <span>Delivery status (optional)</span>
+                <select value={message.deliveryStatus ?? ''} onChange={(event) => updateMessage(message.id, { deliveryStatus: (event.target.value || undefined) as Message['deliveryStatus'] })}>
+                  <option value="">None</option>
+                  <option value="sending">Sending</option>
+                  <option value="sent">Sent</option>
+                  <option value="delivered">Delivered</option>
+                  <option value="read">Read</option>
+                </select>
               </label>
               <label className="editor-field">
                 <span>Date separator (optional)</span>

@@ -3,11 +3,13 @@ import type { Contact } from '@/features/contacts/types'
 import type { Conversation } from '@/features/conversations/types'
 import { ConversationEditor } from './ConversationEditor'
 import { ConversationManager } from './ConversationManager'
+import { SeedExportControls } from './SeedExportControls'
 
 interface DeveloperModeProps {
   contact: Contact
   conversation: Conversation
   conversations: Conversation[]
+  contacts: Contact[]
   onClose: () => void
   onSave: (contact: Contact, conversation: Conversation) => Promise<void>
   onCreate: () => void
@@ -18,7 +20,7 @@ interface DeveloperModeProps {
   onSelect: (conversationId: string) => void
 }
 
-export function DeveloperMode({ contact, conversation, conversations, onClose, onSave, onCreate, onDelete, onDuplicate, onMove, onReset, onSelect }: DeveloperModeProps) {
+export function DeveloperMode({ contact, conversation, conversations, contacts, onClose, onSave, onCreate, onDelete, onDuplicate, onMove, onReset, onSelect }: DeveloperModeProps) {
   return (
     <aside className="developer-mode" aria-label="Developer Mode">
       <div className="developer-mode__header">
@@ -31,7 +33,8 @@ export function DeveloperMode({ contact, conversation, conversations, onClose, o
         </button>
       </div>
       <div className="developer-editor">
-        <ConversationManager conversation={conversation} conversations={conversations} onCreate={onCreate} onDelete={onDelete} onDuplicate={onDuplicate} onMove={onMove} onReset={onReset} onSelect={onSelect} />
+        <ConversationManager conversation={conversation} conversations={conversations} contacts={contacts} onCreate={onCreate} onDelete={onDelete} onDuplicate={onDuplicate} onMove={onMove} onReset={onReset} onSelect={onSelect} />
+        <SeedExportControls contact={contact} conversation={conversation} />
         <ConversationEditor contact={contact} conversation={conversation} onSave={onSave} embedded />
       </div>
     </aside>

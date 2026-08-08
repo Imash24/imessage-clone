@@ -7,7 +7,7 @@ export interface SeedInboxItem {
 }
 
 export const seedInbox: SeedInboxItem[] = [
-  { id: 'ad-kotakb-s', senderName: 'AD-KOTAKB-S', preview: 'Placeholder update 03', updatedAt: '2026-08-05T10:31:00.000Z', unreadCount: 1 },
+  { id: 'ad-kotakb-s', senderName: 'AD-KOTAKB-S', preview: 'Rs.75000 credited to your Kotak Bank a/c XX0273 via NEFT from beneficiary DELOITTE PL-PAYROLL TRANSIT AC. UTR Ref. CITIN26708199272.', updatedAt: '2026-08-04T03:27:00.000Z', unreadCount: 1 },
   { id: 'jm-kotakd-s', senderName: 'JM-KOTAKD-S', preview: 'Placeholder update 03', updatedAt: '2026-08-05T10:12:00.000Z' },
   { id: 'jd-kotakb-s', senderName: 'JD-KOTAKB-S', preview: 'Placeholder update 03', updatedAt: '2026-08-05T09:54:00.000Z' },
   { id: 'jk-slcbnk-s', senderName: 'JK-SLCBNK-S', preview: 'Placeholder update 03', updatedAt: '2026-08-05T09:30:00.000Z' },
