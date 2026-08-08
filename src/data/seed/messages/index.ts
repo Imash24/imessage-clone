@@ -1,13 +1,20 @@
 import { additionalThreadMessages } from './additionalThreads'
 import { adKotakbMessages } from './ad-kotakb'
 import { bhAdhaarMessages } from './bh-adhaar'
+import { bzCkycrMessages } from './bz-ckycr'
 import { jdKotakbMessages } from './jd-kotakb'
 import { jgJiopayMessages } from './jg-jiopay'
 import { jk620014Messages } from './jk-620014'
+import { jkCibilaMessages } from './jk-cibila'
+import { jkFlpkrtMessages } from './jk-flpkrt'
 import { jkInpostMessages } from './jk-inpost'
 import { jkSlcbnkMessages } from './jk-slcbnk'
 import { jm620014Messages } from './jm-620014'
 import { jmKotakdMessages } from './jm-kotakd'
+import { jxSlcbnkMessages } from './jx-slcbnk'
+import { txEdinerMessages } from './tx-ediner'
+import { vmSbiCgvMessages } from './vm-sbicgv'
+import { vmSbiCrdMessages } from './vm-sbicrd'
 import type { Message } from '@/features/messages/types'
 
 export const seedMessagesByConversationId: Record<string, Message[]> = {
@@ -20,5 +27,12 @@ export const seedMessagesByConversationId: Record<string, Message[]> = {
   'jk-620014-p': jk620014Messages,
   'jm-620014-p': jm620014Messages,
   'jg-jiopay-s': jgJiopayMessages,
+  'jk-cibila-s': jkCibilaMessages,
+  'vm-sbicrd-s': vmSbiCrdMessages,
+  'vm-sbicgv-s': vmSbiCgvMessages,
+  'jk-flpkrt-s': jkFlpkrtMessages,
+  'jx-slcbnk-s': jxSlcbnkMessages,
+  'bz-ckycr-s': bzCkycrMessages,
+  'tx-ediner-p': txEdinerMessages,
   ...additionalThreadMessages,
 }
